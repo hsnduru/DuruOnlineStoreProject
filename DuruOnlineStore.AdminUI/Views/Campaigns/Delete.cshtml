@@ -1,0 +1,60 @@
+﻿@model DuruOnlineStore.Data.Entities.Campaign
+
+@{
+    ViewData["Title"] = "Kampanya Sil";
+}
+
+<div class="container mt-5">
+    <h2>Kampanya Silme</h2>
+
+    <div class="alert alert-warning" role="alert">
+        <h5>Aşağıdaki kampanya kaldırılacak!</h5>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kampanya</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.IsActive)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.DiscountRate)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.DiscountRate)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <form id="deleteForm" asp-action="Delete" class="row">
+                <input type="hidden" asp-for="Id" />
+                <button type="button" class="col-3 btn btn-danger me-2" onclick="confirmDelete()">Kampanya Sil</button>
+                <a asp-action="Index" class="col-3 btn btn-secondary">Geri Dön</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/campaign.js"></script>
+}

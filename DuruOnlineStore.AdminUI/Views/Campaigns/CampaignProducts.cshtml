@@ -1,0 +1,54 @@
+﻿@using DuruOnlineStore.AdminUI.Servces
+@using DuruOnlineStore.Data.Entities
+@model Campaign
+@inject IListService listSrv
+
+<h3 class="mt-4">Kampanya</h3>
+<br />
+<h4>@Model.Name Kampanyasındaki Ürünler</h4><hr />
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (Model.Pruducts.Any())
+{
+    <table class="table">
+        @foreach (var item in Model.Pruducts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="RemoveProduct" asp-route-Id="@Model.Id" asp-route-ProductId="@item.Id" class="btn btn-danger btn-sm"> Ürünü Listeden Çıkar</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    TempData["SuccessMessage"] = "Henüz bu kampanyaya eklenmiş bir ürün bulunmamaktadır.";
+}
+<br />
+<br />
+
+<form asp-action="AddProduct" asp-route-id="@Model.Id">
+    <div class="row align-items-center">
+        <div class="col-2">
+            <label>Ürün Adı</label>
+        </div>
+        <div class="col-5">
+            <select name="ProductId" class="form-control" asp-items="listSrv.GetProductList()">
+                <option>Lütfen Ürünü Seçiniz</option>
+            </select>
+        </div>
+        <div class="col-2 ms-2">
+            <input type="submit" value="Kampanya Tanımla" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+</form>

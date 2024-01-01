@@ -1,0 +1,210 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/home.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Sol taraftaki menü -->
+            <div class="col-lg-3 d-none d-lg-block mt-4">
+                <nav class="navbar navbar-light align-items-start p-0 position-relative border border-2 rounded">
+                    <div class="navbar-nav w-100" style="height: 530px; padding-left: 10px;">
+                        <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background-color: #FF5722; z-index: 2;"></div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item" style="background-color: #FF5722">
+                                <a href="#" class="nav-link pt-0"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Yeni Eklenen Ürünler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Kampanyalı Ürünler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">En Çok Satanlar</a>
+                            </li>
+                            <li class="nav-item" style="background-color: #FF7043">
+                                <a href="#" class="nav-link py-2">Kategoriler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Makyaj</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Cilt Bakımı</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Saç Bakımı</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Kişisel Bakım</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Sağlık ve Hijyen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Parfüm ve Deodorant</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Anne ve Bebek</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Erkek Bakımı</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link py-2">Ev ve Yaşam</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- Sağ taraftaki ürünler alanı -->
+            <div class="col-md-9">
+                <div class="colorlib-product ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                                <h2>YENİ EKLENEN ÜRÜNLER</h2>
+                            </div>
+                        </div>
+                        <div class="row row-pb-md mt-3">
+                            <!-- İlk satır -->
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/palette-kit-sac-boyasi-10.1-kullu-sari.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Palette Delux Kit Saç Boyası 10.1</a></h2>
+                                        <span class="price">₺79.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/maybelline-new-york-ruj-color-sensatio.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Maybelline New York Ruj</a></h2>
+                                        <span class="price">₺215.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="~/images/products/arko-tiras-kopugu-cool-200-ml.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Arko Tıraş Köpüğü Cool 200 ml</a></h2>
+                                        <span class="price">₺80.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                                <h2>KAMPANYALI ÜRÜNLER</h2>
+                            </div>
+                        </div>
+                        <div class="row row-pb-md mt-3">
+                            <!-- İkinci satır -->
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/bioblas-forte-bitkisel-serum-sac-dokul.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Bioblas Forte Bitkisel Serum 100 ml</a></h2>
+                                        <span class="price">₺79.90</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/colgate-plax-nane-agiz-bakim-suyu-500.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Colgate Plax Nane 500 ml</a></h2>
+                                        <span class="price">₺104.90</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/loreal-paris-telescopic-mascara.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Loreal Paris Telescopic Maskara - Siyah</a></h2>
+                                        <span class="price">₺260.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                                <h2>EN ÇOK SATANLAR</h2>
+                            </div>
+                        </div>
+                        <div class="row row-pb-md mt-3">
+                            <!-- Üçüncü satır -->
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/bon-veno-100-ml-150-ml-deo-for-men-giff.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Bon Veno For Men Parfüm Seti</a></h2>
+                                        <span class="price">₺229.90</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/neutrogena-goz-makyaj-temizleyicisi.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Neutrogena Deep Clean Göz Makyaj Temizleyicisi</a></h2>
+                                        <span class="price">₺134.90</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-4 text-center">
+                                <div class="product-entry border">
+                                    <a href="#" class="prod-img">
+                                        <img src="images/products/nivea-kadin-deodorant-pearl-beauty-150.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                                    </a>
+                                    <div class="desc">
+                                        <h2><a href="#">Nivea Kadın Deodorant - Pearl&Beauty 150 ml</a></h2>
+                                        <span class="price">₺115.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Diğer satırları ekleyin -->
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p><a href="#" class="btn btn-lg" style="background-color:#FF5722; ">Tüm Ürünleri Göster</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

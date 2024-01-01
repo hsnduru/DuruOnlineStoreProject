@@ -1,0 +1,19 @@
+﻿@model List<ProductItemViewModel>
+
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-xs-6">
+                <partial name="_ProductItem" model="item" />
+                <div class="clearfix visible-sm visible-xs"></div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No products available.</p>
+    }
+</div>

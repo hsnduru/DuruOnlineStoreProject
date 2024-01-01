@@ -1,0 +1,84 @@
+﻿@using DuruOnlineStore.Common.Configurations
+@model DuruOnlineStore.Data.Entities.Product
+@{
+    ViewData["Title"] = "Ürün Düzenleme";
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<form id="editProductForm" asp-action="Edit" method="post" enctype="multipart/form-data" class="border mt-4 bg-white">
+    <div class="row p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 border-bottom pt-2">
+            <h2 class="ms-3">Ürün Düzenle</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name" class="offset-md-2"></label>
+                </div>
+                <div class="col-8 mb-3">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Description" class="offset-md-2"></label>
+                </div>
+                <div class="col-8 mb-3">
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Price" class="offset-md-2"></label>
+                </div>
+                <div class="col-8 mb-3">
+                    <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="StockQuantity" class="offset-md-2"></label>
+                </div>
+                <div class="col-8 mb-3">
+                    <input asp-for="StockQuantity" class="form-control" />
+                    <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="CategoryId" class="offset-md-2"></label>
+                </div>
+                <div class="col-8 mb-3">
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <span asp-for="ImageFile" class="offset-md-2">Ürün Resmi</span>
+                </div>
+                <div class="col-8 mb-3">
+                    <input type="file" name="imageFile" id="uploadBox" multiple class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary form-control">Güncelle</button>
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success form-control">İptal Et</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.Id != 0)
+        {
+            <div class="col-3 offset-1 pt-4 pe-4">
+                <img src="@Url.Content(MyApplicationConfig.ImageBaseUrl + Model.ImageName)" class="img-fluid float-right" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" alt="Product Image" />
+            </div>
+        }
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

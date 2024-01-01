@@ -1,0 +1,97 @@
+﻿@using DuruOnlineStore.Common.Models.Identities;
+@model LoginUserModel
+@{
+    ViewData["Title"] = "Üye Girişi";
+    Layout = "";
+}
+
+<head>
+    <title>Üye Girişi | DuruStore</title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/css/login.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+
+<body class="">
+    <main class="main">
+        <div class="content">
+            <div class="container-fluid pb-5">
+                <div class="row justify-content-md-center">
+                    <div class="card-wrapper col-12 col-md-4 mt-5">
+                        <div class="brand text-center mb-3">
+                            <a href="/"><img src="~/images/logo.png" style="max-width: 280px;" /></a>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Giriş Yap</h4>
+                                <h5 class=" card-title text-black-50">Kayıtlı bir hesap kullanın.</h5>
+
+                                @if (TempData["LoginMessage"] != null)
+                                {
+                                    <div class="alert alert-success">
+                                        @TempData["LoginMessage"]
+                                    </div>
+                                }
+                                
+                                <form asp-action="Login">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="Username" class="control-label"></label>
+                                        <input asp-for="Username" class="form-control" />
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                        <div class="text-right">
+                                            <a asp-controller="Account" asp-action="ForgotPassword" class="small">
+                                                Şifrenizi mi unuttunuz?
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-check position-relative mb-2">
+                                            <input type="checkbox" class="form-check-input d-none" id="RememberMe" name="RememberMe">
+                                            <label class="checkbox checkbox-xxs form-check-label ml-1" asp-for="RememberMe"
+                                                   data-icon="&#xe936">
+                                                @Html.DisplayNameFor(model => model.RememberMe)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group no-margin">
+                                        <input type="submit" value="Giriş" class="btn btn-primary btn-block" />
+                                    </div>
+                                    <div class="text-center mt-3 small">
+                                        Hesabınız yok mu? <a href="register">Üye Ol</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <footer class="footer mt-3">
+                            <div class="container-fluid">
+                                <div class="footer-content text-center small">
+                                    <span class="text-muted">Copyright ©2023 Duru Store | Tüm hakları saklıdır.</span>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,33 @@
+﻿@using DuruOnlineStore.Data.Entities.Identities;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+&nbsp;
+
+<ul class="navbar-nav font-weight-bold">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link">
+                <i class="fas fa-user"></i> @UserManager.GetUserName(User)
+            </a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-controller="account" asp-action="logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link">
+                    <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" id="register" asp-controller="account" asp-action="register"><i class="fas fa-user-plus"></i> Üye Ol</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="login" asp-controller="account" asp-action="login"><i class="fas fa-sign-in-alt"></i> Giriş Yap</a>
+        </li>
+    }
+</ul>

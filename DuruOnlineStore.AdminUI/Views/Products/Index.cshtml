@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ProductViewModel>
+
+@{
+    ViewData["Title"] = "Ürünler";
+}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-6">
+            <h2>Ürün Listesi</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn my-btn" asp-action="Create">
+                <i class="fas fa-plus"></i> &nbsp; Yeni Ürün Ekle
+            </a>
+        </div>
+    </div>
+    <partial name="_ProductSearch"></partial>
+</div>
+
+<div class="p-4 border rounded table-responsive">
+    <table class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr class="table-dark">
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StockQuantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Campaign)
+                </th>
+                <th style="text-align: center;" width="15%">Detay/Düzenle/Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (TempData["CategoryMessage"] != null)
+            {
+                <div class="alert alert-warning">
+                    @TempData["CategoryMessage"]
+                </div>
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.StockQuantity)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Campaign)
+                    </td>
+                    <td style="text-align: right;">
+                        <div class="btn-group" style="display: flex; justify-content: flex-end; align-items: center;">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info text-white m-1" style="cursor:pointer">
+                                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success text-white m-1" style="cursor:pointer">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>  
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger text-white m-1" style="cursor:pointer">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

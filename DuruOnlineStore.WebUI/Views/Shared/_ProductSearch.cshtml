@@ -1,0 +1,17 @@
+﻿@using DuruOnlineStore.WebUI.Services
+@inject IListService listService
+
+<link href="css\search.css" rel="stylesheet" />
+<!-- SEARCH BAR -->
+<div class="col-md-6">
+    <div class="header-search">
+        <form>
+            <select name="CategoryId" class="input-select" asp-items="listService.GetCategoryList()">
+                <option>Tüm Kategoriler</option>
+            </select>
+            <input class="input" placeholder="Ürün ara">
+            <button class="search-btn">Ara</button>
+        </form>
+    </div>
+</div>
+<!-- /SEARCH BAR -->

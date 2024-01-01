@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ProductItemViewModel>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <partial name="_ProductItem" model="item" />
+    }
+}
+else
+{
+    <p>Model is null</p>
+}

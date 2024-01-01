@@ -1,0 +1,264 @@
+﻿@using DuruOnlineStore.Data.Entities.Identities;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DuruStore | Kozmetik & Bakım </title>
+	
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	@* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+</head>
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a href="#"><i class="fa fa-phone"></i> 444-00-44</a></li>
+					<li><a href="#"><i class="fa fa-envelope-o"></i> support@durustore.com</a></li>
+					<li><a href="#"><i class="fa fa-map-marker"></i> 34 İstanbul</a></li>
+				</ul>
+				<ul class="header-links pull-right">
+					<li><a href="#"><i class="fa fa-try"></i> TRY</a></li>
+					<li><partial name="_LoginPartial"></partial></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /TOP HEADER -->
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="Home" class="logo">
+								<img src="/images/logo.png" alt="" style=" width: 260px; height: 85px;">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+					
+					<!-- SEARCH BAR -->
+					<partial name="_ProductSearch"></partial>
+					<!-- /SEARCH BAR -->
+					
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+							<!-- Wishlist -->
+							<div>
+								<a href="#">
+									<i class="fa fa-heart-o"></i>
+									<span>Favorilerim</span>
+									<div class="qty">2</div>
+								</a>
+							</div>
+							<!-- /Wishlist -->
+							<!-- Cart -->
+							<div class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<i class="fa fa-shopping-cart"></i>
+									<span>Sepetim</span>
+									<div class="qty">3</div>
+								</a>
+								<div class="cart-dropdown">
+									<div class="cart-list">
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="./img/product01.png" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+											</div>
+											<button class="delete"><i class="fa fa-close"></i></button>
+										</div>
+
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="./img/product02.png" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+											</div>
+											<button class="delete"><i class="fa fa-close"></i></button>
+										</div>
+									</div>
+									<div class="cart-summary">
+										<small>3 Item(s) selected</small>
+										<h5>SUBTOTAL: $2940.00</h5>
+									</div>
+									<div class="cart-btns">
+										<a href="#">View Cart</a>
+										<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+									</div>
+								</div>
+							</div>
+							<!-- /Cart -->
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#">
+									<i class="fa fa-bars"></i>
+									<span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+	<!-- NAVIGATION -->
+	<nav id="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav">
+					<li class="active"><a href="Home">Anasayfa</a></li>
+					<li><a href="#">Makyaj</a></li>
+					<li><a href="#">Parfüm & Deodorant</a></li>
+					<li><a href="#">Cilt Bakımı</a></li>
+					<li><a href="#">Saç Bakımı</a></li>
+					<li><a href="#">Sağlık & Hijyen</a></li>
+					<li><a href="#">Erkek Bakımı</a></li>
+					<li><a href="#">Çok Satanlar<span style="color: red;"><b> Yeni</b></span></a></li>
+					<li><a href="#">Flaş Ürünler<span style="color: red;"><b> Yeni</b></span></a></li>
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<!-- /NAVIGATION -->
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+	<!-- FOOTER -->
+	<footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Hakkımızda</h3>
+							<p>Kişisel bakım ve kozmetik ürünlerimiz ve muhteşem kampanyalarımızla hizmetinizdeyiz.</p>
+							<ul class="footer-links">
+								<li><a href="#"><i class="fa fa-map-marker"></i>34 İstanbul</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>444-00-44</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>support@durustore.com</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Bilgi</h3>
+							<ul class="footer-links">
+								<li><a href="#">Biz Kimiz</a></li>
+								<li><a href="#">Bize Ulaşın</a></li>
+								<li><a href="#">Gizlilik Politikası</a></li>
+								<li><a href="#">Siparişler ve İadeler</a></li>
+								<li><a href="#">Şartlar ve Koşullar</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Kampanyalar</h3>
+							<ul class="footer-links">
+								<li><a href="/Products">Tüm Ürünler</a></li>
+								<li><a href="#">Aktif Kampanyalar</a></li>
+								<li><a href="#">Flaş Ürünler</a></li>
+								<li><a href="#">Çok Satanlar</a></li>
+								<li><a href="#">Ev & Yaşam</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Hizmet</h3>
+							<ul class="footer-links">
+								<li><a href="#">Hesabım</a></li>
+								<li><a href="#">Sepeti Görüntüle</a></li>
+								<li><a href="#">Favoriler</a></li>
+								<li><a href="#">Şipariş Takibi</a></li>
+								<li><a href="#">Yardım</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+		<!-- bottom footer -->
+		<div id="bottom-footer" class="section">
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<span class="copyright">
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> Duru Store | Tüm hakları saklıdır.
+						</span>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
+	<!-- jQuery Plugins -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/main.js"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

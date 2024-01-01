@@ -1,0 +1,91 @@
+﻿@using DuruOnlineStore.Data.Entities.Identities;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DuruStore | Kozmetik & Bakım </title>
+
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DuruOnlineStore.AdminUI.styles.css" asp-append-version="true" />
+
+    <style>
+        .navbar-nav .nav-item .nav-link{
+            margin-left: 12px;
+            font-weight: bold;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-2" style="background-color: #FF5722">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="font-weight-bold">DURU</span>
+                    <span class="font-size-sm m-1">
+                        Kişisel Bakım &amp; Kozmetik
+                    </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">Ürünler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Categories" asp-action="Index">Kategoriler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Campaigns" asp-action="Index">Kampanyalar</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Kontroller
+                            </a>
+                            <div class="dropdown-menu text-white" style="background-color: #FF5722"; aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="#" asp-action="Index">Siparişler</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="#" asp-action="Index">Ödemeler</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Hesaplar</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-white text-center font-size-sm">
+        <div class="container">
+            &copy; Hasan Duru 2023 - Duru Store <span /><a class="font-size-sm text-black m-3" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></span>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+ 
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

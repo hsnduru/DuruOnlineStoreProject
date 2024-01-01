@@ -1,0 +1,24 @@
+﻿@using DuruOnlineStore.AdminUI.Servces
+@using DuruOnlineStore.Data.Entities
+
+@inject IListService listSrv
+@{
+    var data = listSrv.GetSelectList<Category>();
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="header-search">
+            <form asp-action="Index" method="get">
+                <select name="CategoryId" class="input-select" asp-items="@data">
+                    <option>Tüm Kategoriler</option>
+                </select>
+             
+                <input name="Name" class="input" placeholder="  Ne aramak istiyorsun?">
+                <button class="search-btn">Ara</button>
+            </form>
+        </div>
+    </div>
+</div>

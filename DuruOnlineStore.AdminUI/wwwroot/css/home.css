@@ -1,0 +1,140 @@
+﻿.colorlib-heading {
+    margin-bottom: 0em;
+}
+
+    .colorlib-heading h2 {
+        font-size: 25px;
+        margin-bottom: 1px;
+        line-height: 1.5;
+        font-weight: 700;
+        color: #000;
+        position: relative;
+        text-transform: none;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+
+    .colorlib-heading.colorlib-heading-sm h2 {
+        font-size: 20px;
+        letter-spacing: 0;
+        color: rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+    }
+
+.colorlib-product {
+    padding: 1em 0;
+    clear: both;
+}
+
+.container {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-vertical.navbar-light .navbar-nav .nav-link {
+    padding: 8px 30px;
+    border-bottom: 1px solid #EDF1FF;
+}
+
+.product-entry {
+    display: block;
+    height: 100% !important;
+    background-color: white;
+    border-radius: px; 
+    overflow: hidden;
+}
+
+    .product-entry .prod-img {
+        display: block;
+    }
+
+    .product-entry .desc {
+        padding: 1.5em;
+    }
+
+        .product-entry .desc h2 {
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+
+            .product-entry .desc h2 a {
+                color: #000;
+            }
+
+        .product-entry .desc span.price {
+            display: block;
+            font-family: "Rokkitt", Georgia, serif;
+            font-size: 18px;
+            color: #000;
+            font-weight: 400;
+        }
+
+.prod-img {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-bottom: 1px solid #dedede;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.row-pb-lg {
+    padding-bottom: 6em !important;
+}
+
+.row-pb-md {
+    padding-bottom: 1em !important;
+}
+
+.row-pb-sm {
+    padding-bottom: 2em !important;
+}
+
