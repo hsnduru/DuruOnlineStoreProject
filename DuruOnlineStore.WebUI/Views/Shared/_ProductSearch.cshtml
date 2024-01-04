@@ -5,12 +5,12 @@
 <!-- SEARCH BAR -->
 <div class="col-md-6">
     <div class="header-search">
-        <form>
+        <form asp-controller="Products" asp-action="Index" method="get">
             <select name="CategoryId" class="input-select" asp-items="listService.GetCategoryList()">
                 <option>Tüm Kategoriler</option>
             </select>
-            <input class="input" placeholder="Ürün ara">
-            <button class="search-btn">Ara</button>
+            <input name="Name" class="input" placeholder="Ürün ara">
+            <button type="submit" class="search-btn">Ara</button>
         </form>
     </div>
 </div>

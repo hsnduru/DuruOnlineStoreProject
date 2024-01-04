@@ -19,7 +19,10 @@ namespace DuruOnlineStore.WebUI.Models
         [Display(Name = "Stok")]
         public int StockQuantity { get; set; }
 
-		public string ImageUrl { get; set; }
+        [Display(Name = "Açıklama")]
+        public string Description { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public int? Star { get; set; }
 
