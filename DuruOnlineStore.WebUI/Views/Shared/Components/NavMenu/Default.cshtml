@@ -1,0 +1,66 @@
+﻿@model List<DuruOnlineStore.Data.Entities.Category>
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                <li class="active"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+
+                @foreach (var category in Model)
+                {
+                    <li><a href="/Products/Index?categoryId=@category.Id">@category.Name</a></li>
+                }
+                <li class="submenu-toggle">
+                    <a href="#">Daha Fazla <span>&#9660;</span></a>
+                    <ul class="submenu">
+                        @foreach (var moreCategory in ViewBag.MoreCategories)
+                        {
+                            <li><a href="/Products/Index?categoryId=@moreCategory.Id">@moreCategory.Name</a></li>
+                        }
+                    </ul>
+                </li>
+                <li><a href="/products">Tüm Ürünler@* <span style="color: red;"><b> Yeni</b></span> *@</a></li>
+                <li><a href="#">Flaş Ürünler<span style="color: red;"><b> Yeni</b></span></a></li>
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+
+<style>
+    .submenu {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: max-content;
+    }
+
+    .submenu-toggle:hover .submenu {
+        display: block;
+    }
+
+    .submenu li {
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.submenu-toggle').hover(function () {
+            $(this).find('.submenu').stop(true, true).slideDown('fast');
+        }, function () {
+            $(this).find('.submenu').stop(true, true).slideUp('fast');
+        });
+    });
+</script>

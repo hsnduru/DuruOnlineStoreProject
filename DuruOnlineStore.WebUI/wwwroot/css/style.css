@@ -931,19 +931,59 @@ textarea.input {
   font-size: 12px;
   color: #8D99AE;
 }
-
     .product .product-body .product-name {
         text-transform: uppercase;
         font-size: 14px;
-        white-space: nowrap; /* Metni bir satırda tutma */
+        white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis; /* Taşan metni "..." ile gösterme */
+        text-overflow: ellipsis;
+        cursor: pointer;
     }
-        .product .product-body .product-name:hover {
-            white-space: normal; /* Mouse üzerine gelindiğinde metni tam gösterme */
-            overflow: visible;
-            text-overflow: clip; /* Mouse çekildiğinde tüm metni gösterme */
+
+        .product .product-body .product-name:hover .tooltipp {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: translate(-50%, -5px);
+            -ms-transform: translate(-50%, -5px);
+            transform: translate(-50%, -5px);
         }
+
+        .product .product-body .product-name .tooltipp {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -15px);
+            -ms-transform: translate(-50%, -15px);
+            transform: translate(-50%, -15px);
+            width: auto;
+            /*max-width:350px;*/
+            padding: 10px;
+            font-size: 12px;
+            line-height: 10px;
+            background: #1e1f29;
+            color: #FFF;
+            text-transform: uppercase;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transition: 0.2s all;
+            transition: 0.2s all;
+        }
+
+
+
+    /*.product .product-body .product-name {
+        text-transform: uppercase;
+        font-size: 14px;
+        white-space: nowrap;*/ /* Metni bir satırda tutma */
+        /*overflow: hidden;
+        text-overflow: ellipsis;*/ /* Taşan metni "..." ile gösterme */
+    /*}
+        .product .product-body .product-name:hover {
+            white-space: normal;*/ /* Mouse üzerine gelindiğinde metni tam gösterme */
+            /*overflow: visible;
+            text-overflow: clip;*/ /* Mouse çekildiğinde tüm metni gösterme */
+        /*}*/
 
 .product .product-body .product-name>a {
   font-weight: 700;

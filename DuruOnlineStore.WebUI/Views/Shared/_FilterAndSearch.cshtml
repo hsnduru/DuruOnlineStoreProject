@@ -1,0 +1,118 @@
+﻿@model FilterAndSearchModel
+
+<!-- aside Widget -->
+<div class="aside">
+    <h3 class="aside-title">Kategoriler</h3>
+    <div class="checkbox-filter">
+        @foreach (var category in Model.CategoryList)
+        {
+            <div class="input-checkbox">
+                <input type="checkbox" id="@($"category-{category.Value}")" value="@category.Value" @(category.Selected ? "checked" : "")>
+                <label for="@($"category-{category.Value}")">
+                    <span></span>
+                    @category.Text
+                    <small>(@category.Value)</small>
+                </label>
+            </div>
+        }
+    </div>
+</div>
+<!-- /aside Widget -->
+<!-- aside Widget -->
+<div class="aside">
+    <h3 class="aside-title">Price</h3>
+    <div class="price-filter">
+        <div id="price-slider"></div>
+        <div class="input-number price-min">
+            <input id="price-min" type="number" value="@Model.MinPrice">
+            <span class="qty-up">+</span>
+            <span class="qty-down">-</span>
+        </div>
+        <span>-</span>
+        <div class="input-number price-max">
+            <input id="price-max" type="number" value="@Model.MaxPrice">
+            <span class="qty-up">+</span>
+            <span class="qty-down">-</span>
+        </div>
+    </div>
+</div>
+<!-- /aside Widget -->
+
+<!-- jQuery Plugins -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/jquery.zoom.min.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Otomatik Liste Güncelleme Scripti -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+	// Sayfa yüklendiğinde localStorage'dan checkbox durumlarını al
+	document.addEventListener('DOMContentLoaded', function () {
+		loadCheckboxStatus();
+		applyFilters();
+	});
+
+	// Kategori veya fiyat değiştiğinde otomatik olarak filtreleme yap
+	document.querySelectorAll('input[type=checkbox], input[type=number]').forEach(function (element) {
+		element.addEventListener('change', function () {
+			saveCheckboxStatus();
+			applyFilters();
+		});
+	});
+
+	// Checkbox durumlarını localStorage'a kaydet
+	function saveCheckboxStatus() {
+		var checkboxStatus = {};
+		document.querySelectorAll('input[type=checkbox]').forEach(function (checkbox) {
+			checkboxStatus[checkbox.id] = checkbox.checked;
+		});
+		localStorage.setItem('checkboxStatus', JSON.stringify(checkboxStatus));
+	}
+
+	// Checkbox durumlarını localStorage'dan al ve checkbox'ları işaretle
+	function loadCheckboxStatus() {
+		var checkboxStatus = localStorage.getItem('checkboxStatus');
+		if (checkboxStatus) {
+			checkboxStatus = JSON.parse(checkboxStatus);
+			Object.keys(checkboxStatus).forEach(function (checkboxId) {
+				var checkbox = document.getElementById(checkboxId);
+				if (checkbox) {
+					checkbox.checked = checkboxStatus[checkboxId];
+				}
+			});
+		}
+	}
+
+	// Filtreleri uygula ve ürünleri güncelle
+	function applyFilters() {
+		// Seçilen kategorileri al
+		var selectedCategories = $('input[type=checkbox]:checked').map(function () {
+			return this.value;
+		}).get();
+
+		// Fiyat aralığını al
+		var priceMin = $("#price-min").val();
+		var priceMax = $("#price-max").val();
+
+		// AJAX ile filtreleme işlemini gerçekleştir
+		$.ajax({
+			url: '/Products/FilterProducts', // Filtreleme işlemini gerçekleştirecek action'ın adresi
+			method: 'POST',
+			data: {
+				selectedCategories: selectedCategories,
+				priceMin: priceMin,
+				priceMax: priceMax
+			},
+			success: function (data) {
+				// Filtrelenen ürünleri ekrana yazdır
+				$('#filtered-products').html(data);
+			},
+			error: function (error) {
+				console.error('Filtreleme işlemi sırasında bir hata oluştu: ', error);
+			}
+		});
+	}
+</script>

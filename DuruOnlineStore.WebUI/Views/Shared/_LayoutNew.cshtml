@@ -12,13 +12,13 @@
     <title>@ViewData["Title"] - DuruStore | Kozmetik & Bakım </title>
 	
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="~/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="~/css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="~/css/nouislider.min.css" />
+	<link rel="stylesheet" href="~/css/font-awesome.min.css">
 	<link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
 	<!-- HEADER -->
@@ -131,39 +131,16 @@
 		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
-	<!-- NAVIGATION -->
-	<nav id="navigation">
-		<!-- container -->
-		<div class="container">
-			<!-- responsive-nav -->
-			<div id="responsive-nav">
-				<!-- NAV -->
-				<ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="Home">Anasayfa</a></li>
-					<li><a href="#">Makyaj</a></li>
-					<li><a href="#">Parfüm & Deodorant</a></li>
-					<li><a href="#">Cilt Bakımı</a></li>
-					<li><a href="#">Saç Bakımı</a></li>
-					<li><a href="#">Sağlık & Hijyen</a></li>
-					<li><a href="#">Erkek Bakımı</a></li>
-					<li><a href="#">Çok Satanlar<span style="color: red;"><b> Yeni</b></span></a></li>
-					<li><a href="#">Flaş Ürünler<span style="color: red;"><b> Yeni</b></span></a></li>
-				</ul>
-				<!-- /NAV -->
-			</div>
-			<!-- /responsive-nav -->
-		</div>
-		<!-- /container -->
-	</nav>
-	<!-- /NAVIGATION -->
 
+	<!-- NAVIGATION -->
+		@await Component.InvokeAsync("NavMenu")
+	<!-- /NAVIGATION -->
 
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
 
 	<!-- FOOTER -->
 	<footer id="footer">
@@ -250,12 +227,12 @@
 	</footer>
 	<!-- /FOOTER -->
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="~/js/jquery.min.js"></script>
+	<script src="~/js/bootstrap.min.js"></script>
+	<script src="~/js/slick.min.js"></script>
+	<script src="~/js/nouislider.min.js"></script>
+	<script src="~/js/jquery.zoom.min.js"></script>
+	<script src="~/js/main.js"></script>
 
 
     @await RenderSectionAsync("Scripts", required: false)

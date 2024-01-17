@@ -19,7 +19,10 @@
     </div>
     <div class="product-body">
         <p class="product-category">@Model.Category</p>
-        <h3 class="product-name"><a href="/Products/Details/@Model.Id" class="tooltipp">@Model.Name</a></h3>
+        <h3 class="product-name">
+            <a href="/Products/Details/@Model.Id">
+                <span class="product-name">@Model.Name<span class="tooltipp">@Model.Name</span></span>
+            </a></h3>
         <h4 class="product-price">₺@Model.FinalPrice <del class="product-old-price">₺@Model.Price</del></h4>
         <div class="product-rating"></div>
         <div class="product-btns">
@@ -35,3 +38,21 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var productName = document.querySelector('.product .product-body .product-name');
+
+            if (productName) {
+                productName.addEventListener('mousemove', function (e) {
+                    var tooltip = this.querySelector('.tooltipp');
+                    if (tooltip) {
+                        tooltip.style.left = e.pageX + 'px';
+                        tooltip.style.top = e.pageY + 'px';
+                    }
+                });
+            }
+        });
+    </script>
+}

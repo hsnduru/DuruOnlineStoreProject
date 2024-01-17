@@ -18,18 +18,33 @@ namespace DuruOnlineStore.WebUI.Controllers
     {
         private readonly DuruStoreContext _context;
 		private readonly IProductSearchService _productSearchService;
+		private readonly IListService _listService;
 
-		public ProductsController(DuruStoreContext context, IProductSearchService productSearchService)
+		public ProductsController(DuruStoreContext context, IProductSearchService productSearchService, IListService listService)
 		{
 			_context = context;
 			_productSearchService = productSearchService;
+			_listService = listService;
 		}
 
 		// GET: Products
-		public async Task<IActionResult> Index(ProductSearchModel? model, int page =1)
+		public async Task<IActionResult> Index(ProductSearchModel? model, int categoryId = 0, int page =1)
         {
 			model = model ?? new ProductSearchModel();
 
+			var categoryList = _listService.GetCategoryList();
+			ViewBag.CategoryList = categoryList;
+
+			// Kategoriye özel ürünleri listeleme
+			if (categoryId > 0)
+			{
+				// Kategoriye ait ürünleri filtreleme işlemi
+				model.CategoryId = categoryId;
+				var categoryProducts = _productSearchService.Search(model);
+				return View(categoryProducts.ToPagedList(page, 15));
+			}
+
+			// Tüm ürünleri listeleme
 			var data = _productSearchService.Search(model);
 			return View(data.ToPagedList(page,15));
 		}
