@@ -1,0 +1,137 @@
+﻿@model CartViewModel
+@{
+    ViewData["Title"] = "Sepet";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Duru Store Kozmetik">
+    <meta name="keywords" content="Duru, kozmetik, makyaj">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="~/css/cart.css" />
+</head>
+
+<body>
+    <!-- Shop Cart Section Begin -->
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            @if (Model.ItemCount > 0)
+                            {
+                                <thead>
+                                    <tr>
+                                        <th>ÜRÜNLER</th>
+                                        <th>FİYAT</th>
+                                        <th>ADET</th>
+                                        <th>TOPLAM</th>
+                                        <th>SİL</th>
+                                    </tr>
+                                </thead>
+                            }
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <p class="mb-3 bg-info">Sepetinizde @Model.ItemCount ürün var</p>
+                                </div>
+                            </div>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td class="cart__product__item">
+                                            <img src="@item.ImageUrl" alt="">
+                                            <div class="cart__product__item__title">
+                                                <h6>@item.Name</h6>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">₺ @item.UnitPrice.Value.ToString("N2")</td>
+                                        <td class="cart__quantity">
+                                            <div class="pro-qty" data-itemid="@item.Id">
+                                                <input type="text" id="quantity_@item.Id" data-quantity="@item.Quatitiy" value="@item.Quatitiy">
+                                            </div>
+                                        </td>
+                                        <td class="cart__total">₺ @item.FinalPrice.Value.ToString("N2")</td>
+                                        <td class="cart__close">
+                                            <a asp-controller="Cart" asp-action="RemoveItem" asp-route-id="@item.Id">
+                                                <span style="color: #ca1515">x</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="cart__btn update__btn">
+                        <a asp-controller="Products" asp-action="Index">ALIŞVERİŞE DEVAM ET</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="discount__content">
+                        <h6>İNDİRİM KODLARI</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Kupon kodunuzu girin">
+                            <button type="submit" class="site-btn">Uygula</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <div class="cart__total__procced">
+                        <h6>Sepet Toplamı</h6>
+                        <ul>
+                            <li>Ara Toplam <span>@Model.SubTotalPrice.ToString("N2") ₺</span></li>
+                            <li>Kargo <span>@Model.ShippingPrice.ToString("N2") ₺</span></li>
+                            <li>Toplam <span>@Model.TotalAmount.ToString("N2") ₺</span></li>
+                        </ul>
+                        <a href="/Payments/Checkout" class="primary-btn">Ödemeye Geç</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+
+
+    <!-- Js Plugins -->
+    @* <script src="assets/js/jquery-3.3.1.min.js"></script> *@
+    @* <script src="assets/js/bootstrap.min.js"></script> *@
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/mixitup.min.js"></script>
+    <script src="assets/js/jquery.countdown.min.js"></script>
+    <script src="assets/js/jquery.slicknav.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

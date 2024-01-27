@@ -18,6 +18,8 @@ namespace DuruOnlineStore.WebUI
 
 			builder.Services.AddScoped<IListService, ListService>();
             builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
+            builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
 			builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			// Add services to the container.

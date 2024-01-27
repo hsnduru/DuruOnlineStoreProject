@@ -28,12 +28,17 @@
         <div class="product-btns">
             @if (!_SignInManager.IsSignedIn(User))
             {
-                <button asp-controller="Account" asp-action="Login" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button>
-                <button asp-controller="Account" asp-action="Login" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button>
-            }else
+                <form asp-controller="Account" asp-action="Login" method="get">
+                    <button type="submit" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button>
+                </form>
+                <form asp-controller="Account" asp-action="Login" method="get">
+                    <button type="submit" class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button>
+                </form>
+            }
+            else
             {
-                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button>
-                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button>
+                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
+                <form><button class="add-to-cart-btn add-cart" data-productid="@Model.Id"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
             }
         </div>
     </div>

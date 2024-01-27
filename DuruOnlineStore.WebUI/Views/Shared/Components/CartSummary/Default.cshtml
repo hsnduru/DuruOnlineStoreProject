@@ -1,0 +1,50 @@
+﻿@model CartViewModel
+
+<!-- Cart -->
+<div class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <i class="fa fa-shopping-cart"></i>
+        <span>Sepetim</span>
+        <div class="qty">@Model.ItemCount</div>
+    </a>
+    <div class="cart-dropdown">
+        <div class="cart-list">
+            @if (Model.ItemCount > 0)
+            {
+                @foreach (var item in Model.Items)
+                {
+                    <div class="product-widget">
+                        <div class="product-img">
+                            <img src="@item.ImageUrl" alt="">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                            <h4 class="product-price"><span class="qty">@item.Quatitiy</span>@item.FinalPrice.Value.ToString("C")</h4>
+                        </div>
+                        @* <button class="delete" data-itemid="@item.Id"><i class="fa fa-close"></i></button> *@
+                        <a asp-controller="Cart" asp-action="RemoveItem" asp-route-id="@item.Id" class="delete"><i class="fa fa-close"></i></a>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <p class="mb-3"><b>Henüz Sepetiniz Boş</b></p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="cart-summary">
+            <small>@Model.ItemCount Ürün Seçildi</small>
+            <h5>ARA TOPLAM : @Model.SubTotalPrice.ToString("C")</h5>
+        </div>
+        <div class="cart-btns">
+            <a asp-controller="Cart" asp-action="Index">Sepete Git</a>
+            <a href="/Payments/Checkout">Ödemeye Geç  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /Cart -->
+
+

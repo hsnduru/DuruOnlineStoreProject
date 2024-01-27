@@ -165,4 +165,43 @@
 		});
 	}
 
+	//Cart
+
+	function GetCartItemCount() {
+		$.ajax({
+			type: "get",
+			url: "/Cart/ItemCount",
+			success: function (data) {
+				$("#cart-item-count").text(data);
+			}
+		});
+	}
+
+	$(function () {
+
+		GetCartItemCount();
+
+		$(".add-cart").click(
+			function () {
+				var productId = $(this).data("productid");
+				console.log(productId);
+				$.ajax({
+					type: "post",
+					url: "/Cart/AddToCart",
+					data: { "productId": productId },
+					success: function (data) {
+						GetCartItemCount();
+						alert(data + "\nUrun basariyla eklendi.");
+					},
+					error: function (e) {
+						alert(e.ResponseText);
+					}
+				});
+			}
+		);
+	});
+
+
 })(jQuery);
+
+
