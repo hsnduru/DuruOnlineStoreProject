@@ -4,6 +4,7 @@ using DuruOnlineStore.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DuruOnlineStore.Data.Migrations
 {
     [DbContext(typeof(DuruStoreContext))]
-    partial class DuruStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20240127155626_Product_DateTime_Added")]
+    partial class Product_DateTime_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -273,128 +276,6 @@ namespace DuruOnlineStore.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("DuruOnlineStore.Data.Entities.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("varchar(80)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderNotes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<decimal>("ShippingPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SubTotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("DuruOnlineStore.Data.Entities.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("FinalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetails");
-                });
-
             modelBuilder.Entity("DuruOnlineStore.Data.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -441,7 +322,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 1,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2035),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6722),
                             CategoryId = 1,
                             ImageName = "loreal-paris-telescopic-mascara.jpg",
                             Name = "Loreal Paris Telescopic Maskara - Siyah",
@@ -450,7 +331,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 2,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2049),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6734),
                             CategoryId = 1,
                             ImageName = "flormar-fondoten-perfect-coverage.jpg",
                             Name = "Flormar Fondöten - Perfect Coverage Foundation No: 101 Pastelle",
@@ -459,7 +340,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 3,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2051),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6735),
                             CategoryId = 1,
                             ImageName = "maybelline-new-york-ruj-color-sensatio.jpg",
                             Name = "Maybelline New York Ruj - Color Sensational Creamy Matte Nudes 987 Smoky Rose",
@@ -468,7 +349,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 4,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2052),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6737),
                             CategoryId = 1,
                             ImageName = "loreal-paris-light-from-paradise.jpg",
                             Name = "Loreal Paris Light From Paradise Icoconic Glow Aydınlatıcı Pudra - 01 Coconut Addict",
@@ -477,7 +358,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 5,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2053),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6738),
                             CategoryId = 1,
                             ImageName = "neutrogena-goz-makyaj-temizleyicisi.jpg",
                             Name = "Neutrogena Deep Clean Göz Makyaj Temizleyicisi 125 ml",
@@ -486,7 +367,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 6,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2054),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6739),
                             CategoryId = 2,
                             ImageName = "neutrogena-ultra-nourishing.jpg",
                             Name = "Neutrogena Ultra Nourishing Besleyici Bakım Kremi 300 ml",
@@ -495,7 +376,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 7,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2056),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6740),
                             CategoryId = 2,
                             ImageName = "nivea-nemlendirici-yuz-maskesi-hydra.jpg",
                             Name = "Nivea Nemlendirici Yüz Maskesi - Hydra Skin Effect",
@@ -504,7 +385,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 8,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2057),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6741),
                             CategoryId = 2,
                             ImageName = "arkoarko-nem-krem-250-ml-ekstra-nemel.jpg",
                             Name = "Arko Nem Krem Ekstra Nem Temel Bakım Serisi 250 ml",
@@ -513,7 +394,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 9,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2058),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6743),
                             CategoryId = 2,
                             ImageName = "nivea-sun-koruma-ve-nem-spf-50-faktor.jpg",
                             Name = "Nivea Sun Sprey Güneş Kremi Koruma Ve Nem +Spf50 200 ml",
@@ -522,7 +403,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 10,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2059),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6744),
                             CategoryId = 2,
                             ImageName = "neutrogena-siyah-nokta-karsiti-gunluk.jpg",
                             Name = "Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml",
@@ -531,7 +412,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 11,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2060),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6745),
                             CategoryId = 3,
                             ImageName = "koleston-kit-sac-boyasi-30-koyu-kahve.jpg",
                             Name = "Koleston Kit Saç Boyası 3/0 Koyu Kahve",
@@ -540,7 +421,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 12,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2062),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6746),
                             CategoryId = 3,
                             ImageName = "palette-kit-sac-boyasi-10.1-kullu-sari.jpg",
                             Name = "Palette Delux Kit Saç Boyası 10.1 Küllü Açık Sarı",
@@ -549,7 +430,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 13,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2063),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6747),
                             CategoryId = 3,
                             ImageName = "bioblas-forte-bitkisel-serum-sac-dokul.jpg",
                             Name = "Bioblas Forte Bitkisel Serum - Saç Dökülmesine Karşı Etkili 100 ml",
@@ -558,7 +439,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 14,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2064),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6748),
                             CategoryId = 3,
                             ImageName = "dove-sampuan-uzun-saclar-600-mlsampuan.jpg",
                             Name = "Dove Şampuan Uzun Saç Terapisi 600 ml",
@@ -567,7 +448,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 15,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2065),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6752),
                             CategoryId = 3,
                             ImageName = "gliss-sivi-sac-bakim-kremi-ultimate-oil.jpg",
                             Name = "Gliss Sıvı Saç Bakım Kremi Ultimate Oil Elixir 200 ml",
@@ -576,7 +457,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 16,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2066),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6753),
                             CategoryId = 4,
                             ImageName = "duru-dus-jeli-450-ml-moods-deniz-miner.jpg",
                             Name = "Duru Moods Duş Jeli Deniz Minerali & Aloe Vera Özlü 450 ml",
@@ -585,7 +466,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 17,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2068),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6755),
                             CategoryId = 4,
                             ImageName = "sensodyn-ferah-nefes-dis-macunu-75-ml.jpg",
                             Name = "Sensodyn Ferah Nefes Diş Macunu 75 ml",
@@ -594,7 +475,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 18,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2069),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6756),
                             CategoryId = 4,
                             ImageName = "colgate-plax-nane-agiz-bakim-suyu-500.jpg",
                             Name = "Colgate Plax Nane Ağız Bakım Suyu 500 ml",
@@ -603,7 +484,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 19,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2070),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6757),
                             CategoryId = 4,
                             ImageName = "misip-kurdanli-dis-ipi-50-adet.jpg",
                             Name = "Misip Kürdanlı Diş İpi Silindir Kutu 50li",
@@ -612,7 +493,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 20,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2071),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6758),
                             CategoryId = 4,
                             ImageName = "lionesse-2li-tirnak-makasi-seti-5106.jpg",
                             Name = "Lionesse 2li Tırnak Makası Seti 5106",
@@ -621,7 +502,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 21,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2073),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6759),
                             CategoryId = 5,
                             ImageName = "kotex-active-hijyenik-ped-ultra-extra.jpg",
                             Name = "Kotex Active Hijyenik Ped Ultra Extra Normal 8li",
@@ -630,7 +511,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 22,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2074),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6760),
                             CategoryId = 5,
                             ImageName = "orkid-gunluk-ped-gunluk-koruma-dev-eko.jpg",
                             Name = "Orkid Günlük Ped Günlük Koruma Dev Ekonomi Paketi 48li",
@@ -639,7 +520,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 23,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2075),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6761),
                             CategoryId = 5,
                             ImageName = "durex-prezervatif-yok-otesi-ekstra-ser.jpg",
                             Name = "Durex Prezervatif Yok Ötesi Ekstra İnce 10lu",
@@ -648,7 +529,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 24,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2076),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6762),
                             CategoryId = 5,
                             ImageName = "duru-sprey-limon-kolonyasi-150-ml.jpg",
                             Name = "Duru Sprey Limon Kolonyası 150 ml",
@@ -657,7 +538,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 25,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2077),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6763),
                             CategoryId = 5,
                             ImageName = "le-petit-marseillais-sivi-sabun-lavanta.jpg",
                             Name = "Le Petit Marseillais Sıvı Sabun Lavanta Özlü 300 ml",
@@ -666,7 +547,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 26,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2078),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6764),
                             CategoryId = 6,
                             ImageName = "ninovaparfum-ve-deodorantlar.jpg",
                             Name = "Ninova Women VIII Parfüm Edp 100 ml",
@@ -675,7 +556,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 27,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2079),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6765),
                             CategoryId = 6,
                             ImageName = "emotion-romance-kadin-parfumu-edt-50-m.jpg",
                             Name = "Emotion Romance Kadın Parfümü Edt 50 ml",
@@ -684,7 +565,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 28,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2080),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6766),
                             CategoryId = 6,
                             ImageName = "nivea-kadin-deodorant-pearl-beauty-150.jpg",
                             Name = "Nivea Kadın Deodorant - Pearl & Beauty 150 ml",
@@ -693,7 +574,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 29,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2082),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6767),
                             CategoryId = 6,
                             ImageName = "axe-erkek-deodorant-dark-temptation.jpg",
                             Name = "Axe Erkek Deodorant Dark Temptation 150 ml",
@@ -702,7 +583,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 30,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2083),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6800),
                             CategoryId = 6,
                             ImageName = "bon-veno-100-ml-150-ml-deo-for-men-giff.jpg",
                             Name = "Bon Veno For Men Giff Oud Kofre/Parfüm Seti 100 ml + Deodorant 150 ml",
@@ -711,7 +592,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 31,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2084),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6802),
                             CategoryId = 7,
                             ImageName = "dalin-bebek-bakim-yagi-500-ml.jpg",
                             Name = "Dalin Bebek Bakım Yağı 500 ml",
@@ -720,7 +601,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 32,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2085),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6803),
                             CategoryId = 7,
                             ImageName = "johnsons-baby-bebek-sampuani-pompali.jpg",
                             Name = "Johnsons Baby Bebek Şampuanı Pompalı 750 ml",
@@ -729,7 +610,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 33,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2086),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6804),
                             CategoryId = 7,
                             ImageName = "dalin-islak-mendil-64lubebek.jpg",
                             Name = "Dalin Islak Mendil 64lü",
@@ -738,7 +619,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 34,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2087),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6805),
                             CategoryId = 7,
                             ImageName = "johnsons-baby-bedtime-vucut-yagi-300.jpg",
                             Name = "Johnsons Baby Bedtime Vücut Yağı 300 ml",
@@ -747,7 +628,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 35,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2088),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6806),
                             CategoryId = 7,
                             ImageName = "sebamed-baby-bebek-kremi-extra-yumusak.jpg",
                             Name = "Sebamed Baby Bebek Kremi Extra Yumuşak 200 ml",
@@ -756,7 +637,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 36,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2089),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6807),
                             CategoryId = 8,
                             ImageName = "arko-tiras-kopugu-cool-200-ml.jpg",
                             Name = "Arko Tıraş Köpüğü Cool 200 ml",
@@ -765,7 +646,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 37,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2090),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6808),
                             CategoryId = 8,
                             ImageName = "veet-men-dusta-tuy-dokucu-krem-150-ml.jpg",
                             Name = "Veet Men Duşta Tüy Dökücü Krem 150 ml",
@@ -774,7 +655,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 38,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2091),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6809),
                             CategoryId = 8,
                             ImageName = "gillette-blue-3-tffkullan-at-tiras-bic.jpg",
                             Name = "Gillette Blue 3 Kullan At Tıraş Bıçağı 6lı",
@@ -783,7 +664,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 39,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2092),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6810),
                             CategoryId = 8,
                             ImageName = "nivea-sport-erkekler-icin-sac-yuz-vuc.jpg",
                             Name = "Nivea Sport Erkekler İçin Saç & Yüz & Vücut Jeli 500 ml",
@@ -792,7 +673,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 40,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2094),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6811),
                             CategoryId = 8,
                             ImageName = "nivea-men-tiras-losyonu-deep-dimension.jpg",
                             Name = "Nivea Men Tıraş Losyonu - Deep Dimension Comfort 100 ml",
@@ -801,7 +682,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 41,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2095),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6812),
                             CategoryId = 9,
                             ImageName = "kokulu-tealight-mum-18li.jpg",
                             Name = "Kokulu Tealight Mum",
@@ -810,7 +691,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 42,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2096),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6813),
                             CategoryId = 9,
                             ImageName = "lionessse-seyahat-seti.jpg",
                             Name = "Lionessse Seyahat Seti 7912",
@@ -819,7 +700,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 43,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2097),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6814),
                             CategoryId = 9,
                             ImageName = "bardak-mum-tekli-kutulu.jpg",
                             Name = "Bardak Mum Tekli Kutulu",
@@ -828,7 +709,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 44,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2098),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6815),
                             CategoryId = 9,
                             ImageName = "silindir-mum-40x60-parlak-kirmizi-4lu.jpg",
                             Name = "Silindir Mum 40X60 Parlak Kırmızı",
@@ -837,7 +718,7 @@ namespace DuruOnlineStore.Data.Migrations
                         new
                         {
                             Id = 45,
-                            AddedDate = new DateTime(2024, 2, 14, 0, 54, 1, 101, DateTimeKind.Local).AddTicks(2099),
+                            AddedDate = new DateTime(2024, 1, 27, 18, 56, 26, 255, DateTimeKind.Local).AddTicks(6816),
                             CategoryId = 9,
                             ImageName = "tealight-mum-yesil-50li.jpg",
                             Name = "Tealight Mum Yeşil",
@@ -989,17 +870,6 @@ namespace DuruOnlineStore.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("DuruOnlineStore.Data.Entities.OrderDetail", b =>
-                {
-                    b.HasOne("DuruOnlineStore.Data.Entities.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("DuruOnlineStore.Data.Entities.Product", b =>
                 {
                     b.HasOne("DuruOnlineStore.Data.Entities.Campaign", "Campaign")
@@ -1087,11 +957,6 @@ namespace DuruOnlineStore.Data.Migrations
             modelBuilder.Entity("DuruOnlineStore.Data.Entities.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("DuruOnlineStore.Data.Entities.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

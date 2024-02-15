@@ -16,13 +16,7 @@ namespace DuruOnlineStore.AdminUI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var conStr = builder.Configuration.GetConnectionString("StoreSqlCon");
-            builder.Services.AddDbContext<DuruStoreContext>(options => options.UseSqlServer(conStr));
-            builder.Services.AddTransient<IListService, ListService>();
-
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
-
             builder.Services.AddAuthorization(options =>
             {
                 options.FallbackPolicy = new AuthorizationPolicyBuilder()
@@ -30,6 +24,10 @@ namespace DuruOnlineStore.AdminUI
                     .RequireAuthenticatedUser()
                     .Build();
             });
+
+            var conStr = builder.Configuration.GetConnectionString("StoreSqlCon");
+            builder.Services.AddDbContext<DuruStoreContext>(options => options.UseSqlServer(conStr));
+            builder.Services.AddTransient<IListService, ListService>();
 
             builder.Services.AddIdentity<AppUser, AppRole>(options =>
             {
@@ -55,7 +53,7 @@ namespace DuruOnlineStore.AdminUI
 
                 options.Cookie = new()
                 {
-                    Name = "IdentityCookie",
+                    Name = "AdminIdentityCookie",
                     HttpOnly = true,
                     SameSite = SameSiteMode.Lax,
                     SecurePolicy = CookieSecurePolicy.Always

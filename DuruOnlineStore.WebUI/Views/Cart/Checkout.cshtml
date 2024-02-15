@@ -1,0 +1,238 @@
+﻿@{
+    ViewData["Title"] = "Checkout";
+}
+@model CheckoutViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/cart.css" />
+</head>
+<body>
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <form id="checkout-form" asp-controller="Cart" asp-action="Checkout" method="post">
+                    <div class="col-md-7">
+                        <!-- Billing Details -->
+                        <div class="billing-details">
+                            <div class="section-title">
+                                <h3 class="title">Teslimat Bilgileri</h3>
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.FirstName" placeholder="Adı">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.LastName" placeholder="Soyadı">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="email" asp-for="Order.Email" placeholder="E-Posta">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="tel" asp-for="Order.Phone" placeholder="Telefon">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.Address" placeholder="Adres">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.Country" placeholder="Ülke">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.City" placeholder="Şehir">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.District" placeholder="İlçe">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" asp-for="Order.ZipCode" placeholder="Posta Kodu">
+                            </div>
+                            <div class="order-notes">
+                                <textarea class="input" asp-for="Order.OrderNotes" placeholder="Sipariş Notları"></textarea>
+                            </div>
+                        </div>
+                        <!-- /Billing Details -->
+                    </div>
+
+                    <!-- Order Details -->
+                    <div class="col-md-5 order-details">
+                        <div class="section-title text-center">
+                            <h3 class="title">Siparişiniz</h3>
+                        </div>
+                        <div class="order-summary">
+                            <div class="order-col">
+                                <div><strong>ADET x ÜRÜN</strong></div>
+                                <div><strong>TOPLAM</strong></div>
+                            </div>
+                            <div class="order-products">
+                                @foreach (var item in Model.Cart.Items)
+                                {
+                                    <div class="order-products">
+                                        <div class="order-col">
+                                            <div><b>@item.Quantity.ToString("N0")&nbsp;&nbsp; x &nbsp; </b>@item.Name (@item.Price.ToString() TL)</div>
+                                            <div>@item.FinalPrice.ToString() TL</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <hr />
+                            <div class="order-col">
+                                <div><strong>Sepet Toplamı</strong></div>
+                                <div><strong>@Model.Cart.SubTotalPrice.ToString("N2") TL</strong></div>
+                            </div>
+                            <div class="order-col">
+                                <div><strong>Kargo Ücreti</strong></div>
+                                <div><strong>@Model.Cart.ShippingPrice.ToString("N2") TL</strong></div>
+                            </div>
+                            <div class="order-col">
+                                <div><strong>GENEL TOPLAM</strong></div>
+                                <div><strong class="order-total">@Model.Cart.TotalAmount.ToString("N2") TL</strong></div>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="input-radio">
+                                <input type="radio" name="PaymentMethod" id="payment-cod" value="CashOnDelivery">
+                                <label for="payment-cod">
+                                    <span></span>
+                                    Kapıda Ödeme
+                                </label>
+                            </div>
+                            <div class="input-radio">
+                                <input type="radio" name="PaymentMethod" id="payment-credit" value="CreditCard">
+                                <label class="mb-4" for="payment-credit">
+                                    <span></span>
+                                    Kredi Kartı İle Ödeme
+                                </label>
+                                <div class="caption">
+                                    <div class="mt-4">
+                                        <div class="form-group">
+                                            <input type="text" name="cardHolderName" id="typeName" class="input" siez="17"
+                                                   placeholder="Adı Soyadı" />
+                                            <label class="form-label mt-4" for="typeName">Kart Üzerindeki İsim</label>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="cardNumber" id="typeText" class="input" siez="17"
+                                                   placeholder="1234 5678 9012 3457" minlength="16" maxlength="16" />
+                                            <label class="form-label" for="typeText">Kart Numarası</label>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="expirationDate" id="typeExp" class="input"
+                                                           placeholder="AA/YYYY" size="7" minlength="7" maxlength="7" />
+                                                    <label class="form-label" for="typeExp">Son Kullanma Tarihi</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="password" name="cvv" id="typeCvv" class="input"
+                                                           placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                                    <label class="form-label" for="typeCvv">Güvenlik Kodu - CVV</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-radio">
+                                    <input type="radio" name="PaymentMethod" id="payment-bank" value="BankTransfer">
+                                    <label for="payment-bank">
+                                        <span></span>
+                                        Direct Bank Transfer
+                                    </label>
+                                    <div class="caption">
+                                        <p><strong>Ziraat Bankası</strong></p><hr />
+                                        <p><strong>Şube & Hesap No: </strong> 1165-78960895</p><br />
+                                        <p><strong>IBAN: </strong> TR330001001165789608955001</p><br />
+                                        <p><strong>NOT: </strong>Lütfen Havale/EFT işlemi yaparken açıklama kısmına sipariş numaranını yazmayı unutmayınız!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-radio">
+                                <input type="radio" name="PaymentMethod" id="payment-paypal" value="Paypal">
+                                <label for="payment-paypal">
+                                    <span></span>
+                                    Paypal Ödeme Sistemi
+                                </label>
+                                <div class="caption">
+                                    <div class="form-group">
+                                        <input type="text" id="typeName" class="input" siez="17"
+                                               placeholder="Eposta veya Telefon Numarası" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="terms" name="termsAccepted">
+                            <label for="terms">
+                                <span></span>
+                                <a href="#">Şartlar & koşulları</a> okudum ve kabul ediyorum
+                            </label>
+                        </div>
+                        <button type="submit" class="primary-btn order-submit">SİPARİŞİ TAMAMLA</button>
+                    </div>
+                    @Html.AntiForgeryToken()
+                </form>
+                <!-- /Order Details -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+    <!-- jQuery Plugins -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#checkout-form').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Cart/Checkout",
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        } else {
+
+                            alert("Ödeme işlemi başarısız oldu.");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+
+                        alert("AJAX isteği başarısız: " + error);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+

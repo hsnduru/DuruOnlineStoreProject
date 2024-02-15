@@ -9,9 +9,9 @@
         <div class="product-label">
             @if (Model.DiscountRate.HasValue)
             {
-                <span class="sale">-@Model.DiscountRate%</span>
+                <span class="sale">%@Model.DiscountRate</span>
             }
-            @if (Model.IsNew)
+            @if (Model.IsRecentlyAdded())
             {
                 <span class="new">YENİ</span>
             }
@@ -23,7 +23,17 @@
             <a href="/Products/Details/@Model.Id">
                 <span class="product-name">@Model.Name<span class="tooltipp">@Model.Name</span></span>
             </a></h3>
-        <h4 class="product-price">₺@Model.FinalPrice <del class="product-old-price">₺@Model.Price</del></h4>
+        @* <h4 class="product-price">₺@Model.FinalPrice <del class="product-old-price">₺@Model.Price</del></h4> *@
+        
+        @if (Model.DiscountRate.HasValue)
+        {
+            <h4 class="product-price">@Model.FinalPrice?.ToString("0.00") TL <del class="product-old-price">@Model.Price?.ToString("0.00") TL</del></h4>
+        }
+        else
+        {
+            <h4 class="product-price">@Model.FinalPrice?.ToString("0.00") TL</h4>
+        }
+        
         <div class="product-rating"></div>
         <div class="product-btns">
             @if (!_SignInManager.IsSignedIn(User))
@@ -32,13 +42,13 @@
                     <button type="submit" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button>
                 </form>
                 <form asp-controller="Account" asp-action="Login" method="get">
-                    <button type="submit" class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button>
+                    <button type="submit" class="add-to-cart-btn add-cart" data-productid="@Model.Id" data-quantity="1">><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button>
                 </form>
             }
             else
             {
                 <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                <form><button class="add-to-cart-btn add-cart" data-productid="@Model.Id"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
+                <form><button class="add-to-cart-btn add-cart" data-productid="@Model.Id" data-quantity="1"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
             }
         </div>
     </div>

@@ -1,4 +1,5 @@
 ﻿using DuruOnlineStore.Data.Context;
+using DuruOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,5 +28,9 @@ namespace DuruOnlineStore.WebUI.Services
             return new SelectList(data, "Id", "Name", selectedItem);
         }
 
-    }
+		public Category GetCategoryById(int categoryId)
+		{
+			return _context.Categories.Find(categoryId);
+		}
+	}
 }

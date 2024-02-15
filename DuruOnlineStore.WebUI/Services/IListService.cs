@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using DuruOnlineStore.Data.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DuruOnlineStore.WebUI.Services
 {
@@ -6,5 +7,6 @@ namespace DuruOnlineStore.WebUI.Services
     {
         SelectList GetCategoryList(object? selectedItem = null);
         SelectList GetProductList(object? selectedItem = null);
-    }
+        public Category GetCategoryById(int categoryId);
+	}
 }

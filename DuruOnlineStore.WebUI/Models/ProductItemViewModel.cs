@@ -10,6 +10,8 @@ namespace DuruOnlineStore.WebUI.Models
         [Display(Name = "Ürün Adı")]
         public string Name { get; set; }
 
+        public int CategoryId { get; set; }
+
         [Display(Name = "Kategori")]
         public string Category { get; set; }
 
@@ -49,5 +51,13 @@ namespace DuruOnlineStore.WebUI.Models
 
         public decimal? FinalPrice => (DiscountAmount == 0) ? Price : Price - DiscountAmount;
 
+        [Display(Name = "Eklenme Tarihi")]
+        public DateTime AddedDate { get; set; } = DateTime.Now;
+
+        public bool IsRecentlyAdded()
+        {
+            TimeSpan difference = DateTime.Now - AddedDate;
+            return difference.TotalDays <= 15;
+        }
     }
 }

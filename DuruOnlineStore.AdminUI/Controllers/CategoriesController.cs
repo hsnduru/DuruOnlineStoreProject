@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DuruOnlineStore.Data.Context;
 using DuruOnlineStore.Data.Entities;
 using DuruOnlineStore.AdminUI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DuruOnlineStore.AdminUI.Controllers
 {
@@ -21,6 +22,7 @@ namespace DuruOnlineStore.AdminUI.Controllers
         }
 
         // GET: Categories
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var duruStoreContext = from cat in _context.Categories.Include(x => x.Products)

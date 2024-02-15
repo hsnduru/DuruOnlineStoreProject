@@ -15,7 +15,7 @@ namespace DuruOnlineStore.WebUI.Models
 		public decimal? UnitPrice { get; set; }
 
 		[Display(Name = "Fiyat")]
-		public decimal? Price => UnitPrice * Quatitiy;
+		public decimal? Price => UnitPrice - DiscountAmount;
 
 		[Display(Name = "İndirim Oranı")]
 		public int? DiscountRate { get; set; }
@@ -30,25 +30,40 @@ namespace DuruOnlineStore.WebUI.Models
 					return UnitPrice.Value * (DiscountRate.Value / 100m);
 			}
 		}
-		public decimal? FinalPrice => Quatitiy * ((DiscountAmount == 0) ? UnitPrice : UnitPrice - DiscountAmount);
+		public decimal? FinalPrice => Quantity * ((DiscountAmount == 0) ? UnitPrice : UnitPrice - DiscountAmount);
 
 		[Display(Name = "Adet")]
-		public int Quatitiy { get; set; }
+		public int Quantity { get; set; }
 	}
 
 	public class CartViewModel
 	{
 		public List<CartItemViewModel> Items { get; set; }
 		
-		[Display(Name = "Ara Toplam")]
+		[Display(Name = "Sepet Toplamı")]
 		public decimal SubTotalPrice => Items.Sum(x => x.FinalPrice ?? 0);
-		
-		[Display(Name = "Kargo Ücreti")]
-		public decimal ShippingPrice { get; set; } = 50;
 
-		[Display(Name = "Toplam")]
+        [Display(Name = "Kargo Ücreti")]
+        public decimal ShippingPrice
+        {
+            get
+            {
+                if (SubTotalPrice >= 750)
+                {
+                    return 0; 
+                }
+                else
+                {
+                    return 50;
+                }
+            }
+        }
+
+        public bool ShippingIsFree => SubTotalPrice >= 750;
+
+        [Display(Name = "Genel Toplam")]
 		public decimal TotalAmount => SubTotalPrice + ShippingPrice;
-		
-		public int ItemCount => Items.Sum(x => x.Quatitiy);
+
+        public int ItemCount => Items.Sum(x => x.Quantity);
 	}
 }

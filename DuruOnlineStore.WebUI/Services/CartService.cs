@@ -8,12 +8,14 @@ namespace DuruOnlineStore.WebUI.Services
 {
 	public interface ICartService
 	{
-		void AddToCart(int productId);
+		void AddToCart(int productId, int quantity);
 		CartViewModel GetCart();
 		int ItemCount();
 		void RemoveFromCart(int productId);
 		void SetQuantityCart(int productId, int quantity);
-	}
+		void ClearCart();
+
+    }
 
 	public class CartService : ICartService
 	{
@@ -39,32 +41,32 @@ namespace DuruOnlineStore.WebUI.Services
 
 			var products = from cart in _dbContext.CartItems.Include(x => x.Product)
 				 .Include(x => x.Product.Campaign)
-						where
-						cart.AppUserId == _userService.GetUserId()
-						orderby cart.Product.Name
-						select new CartItemViewModel()
-						{
-							Id = cart.Product.Id,
-							Quatitiy = cart.Quantity,
-							Name = cart.Product.Name,
-							ImageUrl = MyApplicationConfig.ImageBaseUrl + cart.Product.ImageName,
-							UnitPrice = cart.Product.Price,
-							DiscountRate = cart.Product.Campaign.DiscountRate,
-						};
+						   where
+						   cart.AppUserId == _userService.GetUserId()
+						   orderby cart.Product.Name
+						   select new CartItemViewModel()
+						   {
+							   Id = cart.Product.Id,
+							   Quantity = cart.Quantity,
+							   Name = cart.Product.Name,
+							   ImageUrl = MyApplicationConfig.ImageBaseUrl + cart.Product.ImageName,
+							   UnitPrice = cart.Product.Price,
+							   DiscountRate = cart.Product.Campaign.DiscountRate,
+						   };
 			result.Items = products.ToList();
 			return result;
 		}
 
-		public void AddToCart(int productId)
+		public void AddToCart(int productId, int quantity)
 		{
 			var cartItem = _dbContext.CartItems.FirstOrDefault(x => x.AppUserId == _userService.GetUserId() && x.ProductId == productId);
 			if (cartItem != null)
 			{
-				cartItem.Quantity++;
+				cartItem.Quantity += quantity;
 			}
 			else
 			{
-				var newCartItem = new CartItem { AppUserId = _userService.GetUserId(), ProductId = productId };
+				var newCartItem = new CartItem { AppUserId = _userService.GetUserId(), ProductId = productId, Quantity = quantity };
 				_dbContext.Add(newCartItem);
 
 			}
@@ -105,5 +107,12 @@ namespace DuruOnlineStore.WebUI.Services
 				.Sum(x => x.Quantity);
 
 		}
-	}
+
+        public void ClearCart()
+        {
+            var cartItems = _dbContext.CartItems.Where(x => x.AppUserId == _userService.GetUserId()).ToList();
+            _dbContext.CartItems.RemoveRange(cartItems);
+            _dbContext.SaveChanges();
+        }
+    }
 }

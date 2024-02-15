@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DuruOnlineStore.Data.Context;
 using DuruOnlineStore.Data.Entities;
 using DuruOnlineStore.AdminUI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DuruOnlineStore.AdminUI.Controllers
 {
@@ -20,6 +21,7 @@ namespace DuruOnlineStore.AdminUI.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var campaignViewModels = await _context.Campaigns

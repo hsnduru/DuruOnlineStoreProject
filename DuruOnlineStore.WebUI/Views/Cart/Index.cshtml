@@ -34,6 +34,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shop__cart__table">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <p class="mb-3 bg-info">Sepetinizde @Model.ItemCount ürün var</p>
+                            </div>
+                        </div>
                         <table>
                             @if (Model.ItemCount > 0)
                             {
@@ -48,11 +53,6 @@
                                 </thead>
                             }
 
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div>
-                                    <p class="mb-3 bg-info">Sepetinizde @Model.ItemCount ürün var</p>
-                                </div>
-                            </div>
                             <tbody>
                                 @foreach (var item in Model.Items)
                                 {
@@ -63,10 +63,24 @@
                                                 <h6>@item.Name</h6>
                                             </div>
                                         </td>
-                                        <td class="cart__price">₺ @item.UnitPrice.Value.ToString("N2")</td>
+                                        <td class="cart__price">
+                                            @{
+                                                if (@item.DiscountRate.HasValue)
+                                                {
+                                                    var discountedPrice = @item.UnitPrice.Value - (@item.UnitPrice.Value * (@item.DiscountRate.Value / 100m));
+                                                    <span style="text-decoration: line-through; color: red;">₺ @item.UnitPrice.Value.ToString("N2")</span>
+                                                    <br />
+                                                    <span>₺ @(discountedPrice.ToString("N2"))</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>₺ @item.UnitPrice.Value.ToString("N2")</span>
+                                                }
+                                            }
+                                        </td>
                                         <td class="cart__quantity">
                                             <div class="pro-qty" data-itemid="@item.Id">
-                                                <input type="text" id="quantity_@item.Id" data-quantity="@item.Quatitiy" value="@item.Quatitiy">
+                                                <input type="text" id="quantity_@item.Id" data-quantity="@item.Quantity" value="@item.Quantity">
                                             </div>
                                         </td>
                                         <td class="cart__total">₺ @item.FinalPrice.Value.ToString("N2")</td>
@@ -107,11 +121,11 @@
                     <div class="cart__total__procced">
                         <h6>Sepet Toplamı</h6>
                         <ul>
-                            <li>Ara Toplam <span>@Model.SubTotalPrice.ToString("N2") ₺</span></li>
-                            <li>Kargo <span>@Model.ShippingPrice.ToString("N2") ₺</span></li>
-                            <li>Toplam <span>@Model.TotalAmount.ToString("N2") ₺</span></li>
+                            <li>Ara Toplam <span>@Model.SubTotalPrice.ToString("N2") TL</span></li>
+                            <li>Kargo Ücreti <span>@(Model.ShippingIsFree ? "Ücretsiz" : Model.ShippingPrice.ToString("N2") + " TL")</span></li>
+                            <li>Genel Toplam <span>@Model.TotalAmount.ToString("N2") TL</span></li>
                         </ul>
-                        <a href="/Payments/Checkout" class="primary-btn">Ödemeye Geç</a>
+                        <a href="/Cart/Checkout" class="primary-btn">Ödemeye Geç</a>
                     </div>
                 </div>
             </div>

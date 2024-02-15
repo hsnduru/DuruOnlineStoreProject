@@ -16,13 +16,15 @@ namespace DuruOnlineStore.WebUI
             var conStr = builder.Configuration.GetConnectionString("StoreSqlCon");
             builder.Services.AddDbContext<DuruStoreContext>(options => options.UseSqlServer(conStr));
 
-			builder.Services.AddScoped<IListService, ListService>();
+            // Add services to the container.
+            builder.Services.AddScoped<IListService, ListService>();
             builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
 			builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-			// Add services to the container.
+			
 			builder.Services.AddControllersWithViews();
             builder.Services.AddIdentity<AppUser, AppRole>(options =>
             {
@@ -38,6 +40,7 @@ namespace DuruOnlineStore.WebUI
               .AddEntityFrameworkStores<DuruStoreContext>()
               .AddDefaultTokenProviders();
 
+            builder.Services.AddDataProtection();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
@@ -47,7 +50,7 @@ namespace DuruOnlineStore.WebUI
 
                 options.Cookie = new()
                 {
-                    Name = "IdentityCookie",
+                    Name = "WebIdentityCookie",
                     HttpOnly = true,
                     SameSite = SameSiteMode.Lax,
                     SecurePolicy = CookieSecurePolicy.Always

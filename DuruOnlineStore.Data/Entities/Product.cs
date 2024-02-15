@@ -34,6 +34,14 @@ namespace DuruOnlineStore.Data.Entities
 
         [ScaffoldColumn(false)]
         public string? ImageName{ get; set; }
-        
+
+        [Display(Name = "Eklenme Tarihi")]
+        public DateTime AddedDate { get; set; } = DateTime.Now;
+
+        public bool IsRecentlyAdded()
+        {
+            TimeSpan difference = DateTime.Now - AddedDate;
+            return difference.TotalDays <= 15;
+        }
     }
 }

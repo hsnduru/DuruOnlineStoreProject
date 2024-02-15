@@ -22,7 +22,9 @@ namespace DuruOnlineStore.Data.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
 		public DbSet<CartItem> CartItems { get; set; }
-		public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

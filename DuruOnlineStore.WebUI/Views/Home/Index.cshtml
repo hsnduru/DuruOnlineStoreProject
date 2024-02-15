@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="~/css/style.css" />
-    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
 </head>
 <body>
     <!-- SECTION -->
@@ -82,10 +81,8 @@
                         <h3 class="title">YENİ ÜRÜNLER</h3>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Çok Satanlar</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Kampanyalı Ürünler</a></li>
-                                @* 	<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Accessories</a></li> *@
+                                <li class="active"><a data-toggle="tab" href="#tab1">En Son Gelenler</a></li>
+                                @*  <li><a data-toggle="tab" href="#tab1">Kampanyalı Ürünler</a></li> *@
                             </ul>
                         </div>
                     </div>
@@ -99,106 +96,13 @@
                             <div id="tab1" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-1">
                                     <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
+                                    @foreach (var latestProduct in ViewBag.LatestProducts)
+                                    {
+                                        <div class="col-md-3 col-xs-6">
+                                            <partial name="_ProductItem" model="latestProduct" />
+                                            <div class="clearfix visible-sm visible-xs"></div>
                                         </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                     <!-- /product -->
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -227,10 +131,7 @@
                         <h3 class="title">KAMPANYALI ÜRÜNLER</h3>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab2">Çok Satanlar</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Kampanyalı Ürünler</a></li>
-                                @* <li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Accessories</a></li> *@
+                                <li class="active"><a data-toggle="tab" href="#tab2">Flaş Ürünler</a></li>
                             </ul>
                         </div>
                     </div>
@@ -244,109 +145,13 @@
                             <div id="tab2" class="tab-pane fade in active">
                                 <div class="products-slick" data-nav="#slick-nav-2">
                                     <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
+                                    @foreach (var discountedProducts in ViewBag.DiscountedProducts)
+                                    {
+                                        <div class="col-md-3 col-xs-6">
+                                            <partial name="_ProductItem" model="discountedProducts" />
+                                            <div class="clearfix visible-sm visible-xs"></div>
                                         </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
-                                    <!-- product -->
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./images/products/neutrogena-siyah-nokta-karsiti-gunluk.jpg" alt="">
-                                            <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">YENİ</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="#">Neutrogena Siyah Nokta Karşıtı Günlük Peeling Jel 150 ml</a></h3>
-                                            <h4 class="product-price">980.00 TL<del class="product-old-price">$990.00</del></h4>
-                                            <div class="product-rating"></div>
-                                            <div class="product-btns">
-                                                <form><button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Favorilere Ekle</span></button></form>
-                                                <form><button class="add-to-cart-btn add-cart"><i class="fa fa-shopping-cart"></i><span class="tooltipp">Sepete Ekle</span></button></form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                     <!-- /product -->
                                 </div>
                                 <div id="slick-nav-2" class="products-slick-nav"></div>
@@ -400,79 +205,44 @@
                     <div class="products-widget-slick" data-nav="#slick-nav-3">
                         <div>
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/product07.png" alt="">
+                            @foreach (var randomProduct in ViewBag.RandomProducts1)
+                            {
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="@randomProduct.ImageUrl" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@randomProduct.Category</p>
+                                        <h3 class="product-name">
+                                            <a href="@Url.Action("Details", "Products", new { id = randomProduct.Id })">
+                                                @randomProduct.Name
+                                            </a>
+                                        </h3>
+                                        <h4 class="product-price">@randomProduct.Price TL</h4>
+                                    </div>
                                 </div>
-                                <div class="product-body">
-                                    <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/product08.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/product09.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                </div>
-                            </div>
-                            <!-- product widget -->
+                            }
                         </div>
 
                         <div>
                             <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/product01.png" alt="">
+                            @foreach (var randomProduct in ViewBag.RandomProducts2)
+                            {
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="@randomProduct.ImageUrl" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@randomProduct.Category</p>
+                                        <h3 class="product-name">
+                                            <a href="@Url.Action("Details", "Products", new { id = randomProduct.Id })">
+                                                @randomProduct.Name
+                                            </a>
+                                        </h3>
+                                        <h4 class="product-price">@randomProduct.Price TL</h4>
+                                    </div>
                                 </div>
-                                <div class="product-body">
-                                    <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/product02.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                </div>
-                            </div>
-                            <!-- /product widget -->
-                            <!-- product widget -->
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="./img/product03.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Category</p>
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                </div>
-                            </div>
+                            }
                             <!-- product widget -->
                         </div>
                     </div>
@@ -510,3 +280,4 @@
     </div>
     <!-- /SECTION -->
 </body>
+

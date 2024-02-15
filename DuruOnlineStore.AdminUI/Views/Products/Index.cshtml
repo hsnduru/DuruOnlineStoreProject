@@ -60,7 +60,17 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td style="vertical-align: middle;">
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @{
+                            string description = item.Description;
+                            if (!string.IsNullOrEmpty(description))
+                            {
+                                if (description.Length > 40)
+                                {
+                                    description = description.Substring(0, 50) + "...";
+                                }
+                            }
+                        }
+                        @Html.Raw(description)
                     </td>
                     <td style="vertical-align: middle;">
                         @Html.DisplayFor(modelItem => item.Price)
